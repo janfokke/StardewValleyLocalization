@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XnbConvert", "XnbConvert\Xn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XnbConvert.Test", "XnbConvert.Test\XnbConvert.Test.csproj", "{2CE0BB48-A25C-46B4-B4CB-D76D2106CF15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XnbConvert.Terminal", "XnbConvert.Terminal\XnbConvert.Terminal.csproj", "{92749073-E882-418F-9B4A-04BFE884967B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StardewValleyLocalization", "StardewValleyLocalization\StardewValleyLocalization.csproj", "{F38104CD-E6BF-424F-8B4A-65E993BA9439}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{2CE0BB48-A25C-46B4-B4CB-D76D2106CF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CE0BB48-A25C-46B4-B4CB-D76D2106CF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CE0BB48-A25C-46B4-B4CB-D76D2106CF15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{92749073-E882-418F-9B4A-04BFE884967B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{92749073-E882-418F-9B4A-04BFE884967B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{92749073-E882-418F-9B4A-04BFE884967B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{92749073-E882-418F-9B4A-04BFE884967B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F38104CD-E6BF-424F-8B4A-65E993BA9439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F38104CD-E6BF-424F-8B4A-65E993BA9439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F38104CD-E6BF-424F-8B4A-65E993BA9439}.Release|Any CPU.ActiveCfg = Release|Any CPU
