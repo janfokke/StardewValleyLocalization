@@ -1,0 +1,14 @@
+{
+  "ContentRoot": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Stardew Valley\\Content",
+  "DirectoriesThatContainLanguageFiles": [
+    "Strings",
+    "Strings\\schedules",
+    "Strings\\schedules\\spring"
+  ],
+  "LanguageFilters": [
+    {
+      "Name": "en-EN",
+      "RegexFilenameFilters": [ "^[a-zA-Z]*\\.xnb$" ]
+    }
+  ]
+}
