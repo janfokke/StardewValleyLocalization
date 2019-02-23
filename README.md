@@ -1,5 +1,5 @@
 # StardewValleyLocalization
- A tool to edit Stardew Valley XNB language files
+ A tool to translate Stardew Valley XNB language files
 
 ### Prerequisites
 - Microsoft .NET Framework 4.6.1
