@@ -1,0 +1,39 @@
+﻿<mah:MetroWindow x:Class="StardewValleyLocalization.Dialogs.NewProjectDialog"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:local="clr-namespace:StardewValleyLocalization.Dialogs"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 mc:Ignorable="d"
+                 Title="New Project" Height="205" Width="450.5">
+    <Border Padding="10">
+        <StackPanel>
+            <Label>Project name</Label>
+            <TextBox Name="NameTextBox" Text="{Binding ProjectName , UpdateSourceTrigger=PropertyChanged}" />
+
+            <Label>Project directory</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name="PathTextBox" Grid.Column="0"
+                         Text="{Binding ProjectPath, UpdateSourceTrigger=PropertyChanged}" />
+                <Button x:Name="BrowseButton" Click="BrowseButton_Click" Padding="15 0" Margin="10 0 0 0"
+                        Grid.Column="1">
+                    ...
+                </Button>
+            </Grid>
+
+            <StackPanel Margin="0 10" Orientation="Horizontal" FlowDirection="RightToLeft">
+                <Button x:Name="OkeButton" IsEnabled="{Binding ButtonEnabled}" Padding="10" Width="75"
+                        Click="OkeButton_Click">
+                    Oke
+                </Button>
+                <Button x:Name="CancelButton" Padding="10" Width="100" Margin="10 0 0 0" Click="CancelButton_Click">Cancel</Button>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</mah:MetroWindow>

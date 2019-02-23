@@ -10,7 +10,8 @@ namespace XnbConvert
     {
         private static readonly Dictionary<Type, Func<string>> NameResolvers = new Dictionary<Type, Func<string>>
         {
-            {typeof(string), () => typeof(string).AssemblyQualifiedName}
+            {typeof(string), () => typeof(string).AssemblyQualifiedName},
+            {typeof(int), () => typeof(int).AssemblyQualifiedName}
         };
             
         public static string ResolveAssemblyQualifiedName<TTarget>()

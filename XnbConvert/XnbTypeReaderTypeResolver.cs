@@ -15,6 +15,9 @@ namespace XnbConvert
             {"System.Collections.Generic.Dictionary", typeof(Dictionary<,>)},
             {"Microsoft.Xna.Framework.Content.DictionaryReader", typeof(DictionaryTypeReader<,>)},
             {"Microsoft.Xna.Framework.Content.StringReader", typeof(StringTypeReader)},
+            {"Microsoft.Xna.Framework.Content.Int32Reader", typeof(IntTypeReader)},
+
+            {"System.Int32", typeof(int)},
             {"System.String", typeof(string)},
             {"System.Collections.Generic.List", typeof(List<>)}
         };
@@ -31,6 +34,9 @@ namespace XnbConvert
                 },
                 {
                     typeof(string), _ => typeof(StringTypeReader)
+                },
+                {
+                    typeof(int), _ => typeof(IntTypeReader) 
                 }
             };
 

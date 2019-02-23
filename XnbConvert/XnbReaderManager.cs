@@ -67,12 +67,10 @@ namespace XnbConvert
                 {
                     XnbTypeReader readerInstance = XnbReaderFactory.CreateReaderFromType(readerType);
                     _xnbTypeReaders.Add(readerInstance);
+                    index = _xnbTypeReaders.Count-1;
                 }
-
-                XnbTypeReader reader = _xnbTypeReaders.Last();
-                //index 0 means null, so don't worry about index -1
-                index = _xnbTypeReaders.Count;
-                return (index, reader);
+                XnbTypeReader reader = _xnbTypeReaders[index];
+                return (index+1, reader);
             } 
         }
 

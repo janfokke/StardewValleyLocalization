@@ -3,12 +3,879 @@
   "DirectoriesThatContainLanguageFiles": [
     "Strings",
     "Strings\\schedules",
-    "Strings\\schedules\\spring"
+    "Strings\\schedules\\spring",
+    "Data",
+    "Data\\Events",
+    "Data\\Festivals",
+    "Data\\TV"
   ],
   "LanguageFilters": [
     {
-      "Name": "en-EN",
-      "RegexFilenameFilters": [ "^[a-zA-Z]*\\.xnb$" ]
+      "Name": "en-EN (Not recommended -> see readme.md)",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.xnb"]
+    },
+    {
+      "Name": "de-DE",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.de-DE\\.xnb"]
+    },
+    {
+      "Name": "es-ES",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.es-ES\\.xnb"]
+    },
+    {
+      "Name": "ja-JP",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.ja-JP\\.xnb"]
+    },
+    {
+      "Name": "pt-BR",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.pt-BR\\.xnb"]
+    },
+    {
+      "Name": "ru-RU",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.ru-RU\\.xnb"]
+    },
+    {
+      "Name": "zh-CN",
+      "RegexFilenameFilters": ["^[a-zA-Z]*\\.zh-CN\\.xnb"]
+    }
+  ],
+  "ExcludedFiles": [
+    "Data\\animationDescriptions",
+    "Data\\eventConditions",
+    "Data\\fruitTrees",
+    "Data\\Locations",
+    "Data\\MineRooms"
+  ],
+  "IgnoredContent": [
+    "Data\\SecretNotes:11",
+    "Data\\SecretNotes:16",
+    "Data\\SecretNotes:17",
+    "Data\\SecretNotes:18",
+    "Data\\SecretNotes:19",
+    "Data\\SecretNotes:20",
+    "Data\\SecretNotes:21"
+  ],
+
+  "ContentParsers": [
+    // Events
+    {
+      "Key": "Data\\Events",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.EventStringParser, StardewValleyLocalization"
+      }
+    },
+
+    // Data\\ExtraDialogue
+    {
+      "Key": "Data\\ExtraDialogue:SkullCavern_100_event",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.EventStringParser, StardewValleyLocalization"
+      }
+    },
+    {
+      "Key": "Data\\ExtraDialogue:SkullCavern_100_event_honorable",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.EventStringParser, StardewValleyLocalization"
+      }
+    },
+
+    // Data\\weapons
+    {
+      "Key": "Data\\weapons",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "Name"
+          },
+          {
+            "Key": 1,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+
+    // Data\\Achievements
+    {
+      "Key": "Data\\Achievements",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "Name"
+          },
+          {
+            "Key": 1,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+
+    // Data\\BigCraftablesInformation
+    {
+      "Key": "Data\\BigCraftablesInformation",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Description"
+          },
+          {
+            "Key": 8,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\Blueprints
+    {
+      "Key": "Data\\Blueprints:Chicken",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\Blueprints:Duck",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\Blueprints:Rabbit",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\Blueprints:Cow",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\Blueprints:Sheep",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\Blueprints:Goat",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\Blueprints:Pig",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    // Data\\Blueprints
+    {
+      "Key": "Data\\Blueprints",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 8,
+            "Value": "Name"
+          },
+          {
+            "Key": 9,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+
+    // Data\\Boots
+    {
+      "Key": "Data\\Boots",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 1,
+            "Value": "Description"
+          },
+          {
+            "Key": 6,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\Bundles
+    {
+      "Key": "Data\\Bundles",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\CookingRecipes
+    {
+      "Key": "Data\\CookingRecipes",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\CraftingRecipes
+    {
+      "Key": "Data\\CraftingRecipes",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 5,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\FarmAnimals
+    {
+      "Key": "Data\\FarmAnimals",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 25,
+            "Value": "Name"
+          },
+          {
+            "Key": 26,
+            "Value": "Location"
+          }
+        ]
+      }
+    },
+
+    // Data\\Fish
+    {
+      "Key": "Data\\Fish",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 13,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\Furniture
+    {
+      "Key": "Data\\Furniture",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 6,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\hats
+    {
+      "Key": "Data\\hats",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 1,
+            "Value": "Description"
+          },
+          {
+            "Key": 4,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\NPCDispositions
+    {
+      "Key": "Data\\NPCDispositions",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 9,
+            "Value": "Relatives (Only translate parts between ' ')"
+          },
+          {
+            "Key": 11,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\NPCGiftTastes
+    {
+      "Key": "Data\\NPCGiftTastes",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "Gift reaction"
+          },
+          {
+            "Key": 2,
+            "Value": "Gift reaction"
+          },
+          {
+            "Key": 4,
+            "Value": "Gift reaction"
+          },
+          {
+            "Key": 6,
+            "Value": "Gift reaction"
+          },
+          {
+            "Key": 8,
+            "Value": "Gift reaction"
+          }
+        ]
+      }
+    },
+
+    // Data\\Quests
+    {
+      "Key": "Data\\Quests",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 1,
+            "Value": "Name"
+          },
+          {
+            "Key": 2,
+            "Value": "Title"
+          },
+          {
+            "Key": 3,
+            "Value": "Quest"
+          }
+        ]
+      }
+    },
+
+    // Data\\SecretNotes
+    {
+      "Key": "Data\\SecretNotes:10",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 1,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 3,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 5,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:12",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:13",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:14",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 3,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:15",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 2,
+            "Value": "SecretNote (Do not edit number part!)"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:22",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "closure"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:23",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 3,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:1",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:2",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 5,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 7,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 8,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 9,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:3",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:4",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 5,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 7,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 8,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:5",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 5,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 7,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 8,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:6",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 3,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 5,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 8,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 9,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 11,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 12,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:7",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 4,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 6,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:8",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 1,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 3,
+            "Value": "SecretNote"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\SecretNotes:9",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "^",
+        "ContentIndexes": [
+          {
+            "Key": 0,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 2,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 3,
+            "Value": "SecretNote"
+          },
+          {
+            "Key": 5,
+            "Value": "SecretNote"
+          }
+        ]
+      }
     }
   ]
 }

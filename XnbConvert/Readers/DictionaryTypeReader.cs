@@ -14,7 +14,10 @@ namespace XnbConvert.Readers
         public DictionaryTypeReader()
         {
             Version = 0;
-            Name = $"Microsoft.Xna.Framework.Content.DictionaryReader`2[[{TypeNameResolver.ResolveAssemblyQualifiedName<TKeyType>()}],[{TypeNameResolver.ResolveAssemblyQualifiedName<TKeyType>()}]]";
+            Name = $"Microsoft.Xna.Framework.Content.DictionaryReader`2[[{TypeNameResolver.ResolveAssemblyQualifiedName<TKeyType>()}],[{TypeNameResolver.ResolveAssemblyQualifiedName<TValueType>()}]]";
+
+            var k = typeof(TKeyType);
+            var v = typeof(TValueType);
         }
         
         public override object Read(XnbReaderManager xnbReaderManager, XnbStreamReader xnbStreamReader)
@@ -24,16 +27,32 @@ namespace XnbConvert.Readers
         
             for (var i = 0; i < count; i++)
             {
-                //TODO check if reference type and skip reading index
-                int keyReaderIndex = xnbStreamReader.Read7BitEncodedInt();
-                var key = (TKeyType)xnbReaderManager.XnbReaderFromIndex(keyReaderIndex).Read(xnbReaderManager, xnbStreamReader);
+                var xnbKeyTypeReader = GetXnbTypeReader<TKeyType>(xnbReaderManager, xnbStreamReader);
+                var key = (TKeyType)xnbKeyTypeReader.Read(xnbReaderManager, xnbStreamReader);
 
-                int valueReaderIndex = xnbStreamReader.Read7BitEncodedInt();
-                var value = (TValueType)xnbReaderManager.XnbReaderFromIndex(valueReaderIndex).Read(xnbReaderManager, xnbStreamReader);
+                var xnbValueTypeReader = GetXnbTypeReader<TValueType>(xnbReaderManager, xnbStreamReader);
+                var value = (TValueType)xnbValueTypeReader.Read(xnbReaderManager, xnbStreamReader);
 
                 dictionary.Add(key, value);
             }
             return dictionary;
+        }
+
+        private static XnbTypeReader GetXnbTypeReader<TTargetType>(XnbReaderManager xnbReaderManager, XnbStreamReader xnbStreamReader)
+        {
+            XnbTypeReader xnbTypeReader;
+
+            if (typeof(TTargetType).IsValueType)
+            {
+                xnbTypeReader = xnbReaderManager.GetOrAddXnbTypeReaderFromTargetType<TTargetType>().reader;
+            }
+            else
+            {
+                int keyReaderIndex = xnbStreamReader.Read7BitEncodedInt();
+                xnbTypeReader = xnbReaderManager.XnbReaderFromIndex(keyReaderIndex);
+            }
+
+            return xnbTypeReader;
         }
 
         public override void Write(XnbReaderManager xnbReaderManager, XnbStreamWriter xnbStreamWriter, object value)
@@ -44,11 +63,13 @@ namespace XnbConvert.Readers
                 foreach (KeyValuePair<TKeyType,TValueType> keyValuePair in dictionary)
                 {
                     (int keyReaderIndex, XnbTypeReader keyReader) = xnbReaderManager.GetOrAddXnbTypeReaderFromTargetType<TKeyType>();
-                    xnbStreamWriter.Write7BitEncodedInt(keyReaderIndex);
+                    if (!typeof(TKeyType).IsValueType)
+                        xnbStreamWriter.Write7BitEncodedInt(keyReaderIndex);
                     keyReader.Write(xnbReaderManager,xnbStreamWriter,keyValuePair.Key);
                     
                     (int valueReaderIndex, XnbTypeReader valueReader) = xnbReaderManager.GetOrAddXnbTypeReaderFromTargetType<TValueType>();
-                    xnbStreamWriter.Write7BitEncodedInt(valueReaderIndex);
+                    if (!typeof(TValueType).IsValueType)
+                        xnbStreamWriter.Write7BitEncodedInt(valueReaderIndex);
                     valueReader.Write(xnbReaderManager,xnbStreamWriter,keyValuePair.Value);
                 }
             }

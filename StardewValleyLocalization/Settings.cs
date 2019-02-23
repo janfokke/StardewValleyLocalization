@@ -1,30 +1,21 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using StardewValleyLocalization.Parsers;
 
 namespace StardewValleyLocalization
 {
-    class LanguageFilter
-    {
-        public string Name { get; set; }
-        public string[] RegexFilenameFilters { get; set; }
-    }
-
-    class Settings
+    internal class Settings
     {
         private static Settings _instance;
 
-        public static Settings Instance {
+        public static Settings Instance
+        {
             get
             {
                 if (_instance == null)
-                {
-                    _instance = JsonConvert.DeserializeObject<Settings>(File.ReadAllText("Settings.json"));
-                }
+                    _instance = JsonConvert.DeserializeObject<Settings>(File.ReadAllText("Settings.json"),
+                        new JsonSerializerSettings {TypeNameHandling = TypeNameHandling.Auto});
                 return _instance;
             }
         }
@@ -32,5 +23,8 @@ namespace StardewValleyLocalization
         public string ContentRoot { get; set; }
         public string[] DirectoriesThatContainLanguageFiles { get; set; }
         public LanguageFilter[] LanguageFilters { get; set; }
+        public List<KeyValuePair<string, IParser>> ContentParsers { get; set; }
+        public List<string> ExcludedFiles { get; set; }
+        public List<string> IgnoredContent { get; set; }
     }
 }

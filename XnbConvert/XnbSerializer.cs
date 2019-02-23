@@ -8,6 +8,9 @@ namespace XnbConvert
 {
     public class XnbSerializer
     {
+        private static readonly Lazy<XnbSerializer> _lazy = new Lazy<XnbSerializer>(() => new XnbSerializer());
+        public static XnbSerializer Instance => _lazy.Value;
+
         public XnbSerializer()
         {
             
