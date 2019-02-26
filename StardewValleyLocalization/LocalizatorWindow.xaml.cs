@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -148,6 +149,7 @@ namespace StardewValleyLocalization
         private void FindInFile_Click(object sender, RoutedEventArgs e)
         {
             _findWindow.Show();
+            _findWindow.Activate();
         }
 
         private void MetroWindow_Closed(object sender, EventArgs e)

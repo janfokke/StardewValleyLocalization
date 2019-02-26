@@ -17,7 +17,6 @@ namespace StardewValleyLocalization
         ///     Parser, used for dividing the content into easy to use parts
         /// </summary>
         private readonly IParser _parser;
-
         private string prevContent;
 
         public Content(XnbFile file, IParser parser, object index, string content, string contentPath)

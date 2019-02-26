@@ -30,6 +30,7 @@ namespace StardewValleyLocalization.ViewModel
             QuickPasteCommand = new DelegateCommand(QuickPaste, _ContentAvailable);
             PreviousContentCommand = new DelegateCommand(PreviousContent, _ContentAvailable);
             NextContentCommand = new DelegateCommand(NextContent, _ContentAvailable);
+            InstallCommand = new DelegateCommand(Install, _ContentAvailable);
             InitializeLanguageFilters();
         }
 
@@ -47,6 +48,7 @@ namespace StardewValleyLocalization.ViewModel
         public DelegateCommand CloseCommand { get; }
         public DelegateCommand OpenFileInExplorerCommand { get; }
         public DelegateCommand FindInProjectCommand { get; }
+        public DelegateCommand InstallCommand { get; }
 
         public int FileIndex
         {
@@ -89,6 +91,17 @@ namespace StardewValleyLocalization.ViewModel
         }
 
         public bool ContentAvailable { get; private set; }
+
+        private void Install(object obj)
+        {
+            _view.Notify("Copying files", TimeSpan.FromSeconds(1));
+            Project.Files.ForEach(file =>
+            {
+                string filePath = Path.Combine(Project.ProjectDirectoryPath, file);
+                string targetPath = Path.Combine(Settings.Instance.ContentRoot, file);
+                File.Copy(filePath, targetPath, true);
+            });
+        }
 
         private void FindInProject(object obj)
         {
@@ -280,6 +293,7 @@ namespace StardewValleyLocalization.ViewModel
             NextContentCommand.RaiseCanExecuteChanged();
             PreviousContentCommand.RaiseCanExecuteChanged();
             QuickPasteCommand.RaiseCanExecuteChanged();
+            InstallCommand.RaiseCanExecuteChanged();
 
 
             Files.RaiseListChangedEvents = true;

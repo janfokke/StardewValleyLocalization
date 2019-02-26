@@ -7,7 +7,8 @@
     "Data",
     "Data\\Events",
     "Data\\Festivals",
-    "Data\\TV"
+    "Data\\TV",
+    "Characters\\Dialogue"
   ],
   "LanguageFilters": [
     {

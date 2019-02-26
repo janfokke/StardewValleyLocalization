@@ -44,6 +44,7 @@
                               ItemsSource="{Binding LanguageFilters}" />
                     <MenuItem Header="Load Project" Command="{Binding LoadProjectCommand}" />
                     <MenuItem Header="Save All" Command="{Binding SaveProjectCommand}" />
+                    <MenuItem Header="Install" Command="{Binding InstallCommand}" />
                 </MenuItem>
             </Menu>
         </Controls:WindowCommands>
