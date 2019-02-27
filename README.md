@@ -1,5 +1,8 @@
-# StardewValleyLocalization
- A tool to translate Stardew Valley XNB language files
+![banner](https://user-images.githubusercontent.com/17224428/53487107-ebf34f80-3a8a-11e9-836b-4a36cb0bab8c.png)
+
+A tool to translate Stardew Valley XNB language files
+
+![k0vwrr16qci21](https://user-images.githubusercontent.com/17224428/53487211-3c6aad00-3a8b-11e9-85b4-eb2d1e35c291.png)
 
 ### Prerequisites
 - Microsoft .NET Framework 4.6.1
