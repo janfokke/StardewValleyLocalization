@@ -99,6 +99,57 @@
       }
     },
 
+    // Data\\Monsters
+    {
+      "Key": "Data\\Monsters",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 14,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
+    // Data\\ObjectInformation
+    {
+      "Key": "Data\\ObjectInformation",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 4,
+            "Value": "Name"
+          },
+          {
+            "Key": 5,
+            "Value": "Description"
+          }
+        ]
+      }
+    },
+    {
+      "Key": "Data\\TV\\CookingChannel",
+      "Value": {
+        "$type": "StardewValleyLocalization.Parsers.SplitStringParser, StardewValleyLocalization",
+        "Separator": "/",
+        "ContentIndexes": [
+          {
+            "Key": 1,
+            "Value": "Description"
+          },
+          {
+            "Key": 2,
+            "Value": "Name"
+          }
+        ]
+      }
+    },
+
     // Data\\Achievements
     {
       "Key": "Data\\Achievements",
