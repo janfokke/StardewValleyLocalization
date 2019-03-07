@@ -98,6 +98,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ContentValidator\BracketsContentValidator.cs" />
+    <Compile Include="ContentValidator\CapitalizedContentValidator.cs" />
+    <Compile Include="ContentValidator\EllipsisValidator.cs" />
+    <Compile Include="ContentValidator\FormatSpecifierValidator.cs" />
+    <Compile Include="ContentValidator\StringEndCharacterMatch.cs" />
     <Compile Include="Converters\BoolToColorConverter.cs" />
     <Compile Include="Converters\TrueToVisibilityConverter.cs" />
     <Compile Include="Converters\FalseToVisibilityConverter.cs" />
@@ -111,6 +116,7 @@
     </Compile>
     <Compile Include="IView.cs" />
     <Compile Include="LanguageFilter.cs" />
+    <Compile Include="ContentValidator\LeadingAndTrailingSpaceContentValidator.cs" />
     <Compile Include="Parsers\EventStringParser.cs" />
     <Compile Include="Parsers\SplitStringParser.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -121,6 +127,7 @@
     <Compile Include="Parsers\IParser.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="FindCommandModel.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
     <Compile Include="ViewModel\LocalizatorViewModel.cs" />
     <Compile Include="ObservableContent.cs" />
     <Compile Include="ParserFactory.cs" />

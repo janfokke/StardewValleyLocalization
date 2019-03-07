@@ -31,7 +31,13 @@ namespace StardewValleyLocalization.ViewModel
             PreviousContentCommand = new DelegateCommand(PreviousContent, _ContentAvailable);
             NextContentCommand = new DelegateCommand(NextContent, _ContentAvailable);
             InstallCommand = new DelegateCommand(Install, _ContentAvailable);
+            FixContentCommand = new DelegateCommand(FixContent);
             InitializeLanguageFilters();
+        }
+
+        private void FixContent(object obj)
+        {
+            SelectedContent.InitializeContentParts((string) obj);
         }
 
         public Project Project { get; private set; }
@@ -49,6 +55,8 @@ namespace StardewValleyLocalization.ViewModel
         public DelegateCommand OpenFileInExplorerCommand { get; }
         public DelegateCommand FindInProjectCommand { get; }
         public DelegateCommand InstallCommand { get; }
+
+        public DelegateCommand FixContentCommand { get; }
 
         public int FileIndex
         {
@@ -108,7 +116,6 @@ namespace StardewValleyLocalization.ViewModel
             var findCommandModel = obj as FindCommandModel;
             if (findCommandModel == null || Files == null)
                 return;
-
 
             var fileSkipCount = SelectedFile == null ? 0 : Files.IndexOf(SelectedFile);
 

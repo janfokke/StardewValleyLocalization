@@ -177,13 +177,13 @@ namespace StardewValleyLocalization.Properties
     ///             <c>NotifyChanged(params string[])</c>
     ///         </item>
     ///         <item>
-    ///             <c>NotifyChanged{T}(Expression{Func{T}})</c>
+    ///             <c>NotifyChanged{FormatSpecifierValidator}(Expression{Func{FormatSpecifierValidator}})</c>
     ///         </item>
     ///         <item>
-    ///             <c>NotifyChanged{T,U}(Expression{Func{T,U}})</c>
+    ///             <c>NotifyChanged{FormatSpecifierValidator,U}(Expression{Func{FormatSpecifierValidator,U}})</c>
     ///         </item>
     ///         <item>
-    ///             <c>SetProperty{T}(ref T, T, string)</c>
+    ///             <c>SetProperty{FormatSpecifierValidator}(ref FormatSpecifierValidator, FormatSpecifierValidator, string)</c>
     ///         </item>
     ///     </list>
     /// </remarks>
@@ -616,7 +616,7 @@ namespace StardewValleyLocalization.Properties
     ///     of enumerable types, producing ordinary C# 'foreach' statement and placing caret inside block:
     ///     <code>
     /// [SourceTemplate]
-    /// public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; xs) {
+    /// public static void forEach&lt;FormatSpecifierValidator&gt;(this IEnumerable&lt;FormatSpecifierValidator&gt; xs) {
     ///   foreach (var x in xs) {
     ///      //$ $END$
     ///   }
@@ -641,7 +641,7 @@ namespace StardewValleyLocalization.Properties
     ///     Applying the attribute on a source template method:
     ///     <code>
     /// [SourceTemplate, Macro(Target = "item", Expression = "suggestVariableName()")]
-    /// public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; collection) {
+    /// public static void forEach&lt;FormatSpecifierValidator&gt;(this IEnumerable&lt;FormatSpecifierValidator&gt; collection) {
     ///   foreach (var item in collection) {
     ///     //$ $END$
     ///   }

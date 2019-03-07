@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Windows.Input;
 using PropertyChanged;
 using StardewValleyLocalization.Parsers;
 
 namespace StardewValleyLocalization
 {
+    interface IContentValidator
+    {
+        List<Warning> Validate(string oldContent, string newContent);
+    }
+
     [AddINotifyPropertyChangedInterface]
     internal class Content
     {
@@ -58,8 +64,18 @@ namespace StardewValleyLocalization
         /// </summary>
         public string Result { get; private set; }
 
-        private void InitializeContentParts(string content)
+        public void InitializeContentParts(string content)
         {
+            bool validate = false;
+            if (ContentParts != null)
+            {
+                validate = true;
+                foreach (var cp in ContentParts)
+                {
+                    cp.PropertyChanged -= ContentChanged;
+                }
+            }
+
             ContentParts = new ReadOnlyCollection<ObservableContent>(_parser.DisassembleToParts(content).Select(
                 x =>
                 {
@@ -68,7 +84,22 @@ namespace StardewValleyLocalization
 
                     return observableContent;
                 }).ToList());
+            if (validate)
+            {
+                ValidateContent();
+                ContentChanged(null, null);
+            }
         }
+
+        private readonly List<IContentValidator> contentValidators = new List<IContentValidator>
+        {
+            new LeadingAndTrailingSpaceContentValidator(),
+            new FormatSpecifierValidator(),
+            new StringEndCharacterMatch(),
+            new BracketsContentValidator(),
+            new CapitalizedContentValidator(),
+            new EllipsisValidator()
+        };
 
         private void ValidateContent()
         {
@@ -78,175 +109,11 @@ namespace StardewValleyLocalization
 
             if (string.IsNullOrEmpty(Original) || string.IsNullOrEmpty(Result))
             {
-                Warnings.Add(new Warning {Message = "No content", WarningLevel = WarningLevel.Error});
+                Warnings.Add(new Warning ("No content", WarningLevel.Error));
             }
             else
             {
-                var specialEncodings = new[]
-                {
-                    "$a",
-                    "{",
-                    "}",
-                    "{0}",
-                    "{1}",
-                    "{2}",
-                    "{3}",
-                    "{4}",
-                    "{5}",
-                    "{6}",
-                    "{7}",
-                    "{8}",
-                    "{9}",
-                    "/",
-                    "$content",
-                    "$neutral",
-                    "\\n",
-                    "$h",
-                    "$l",
-                    "$9",
-                    "$a",
-                    "$b",
-                    "$c",
-                    "$d",
-                    "$y",
-                    "$q",
-                    "$r",
-                    "$p",
-                    "$k",
-                    "$e",
-                    "$s",
-                    "$u",
-                    "#",
-                    "¦",
-                    "$",
-                    "%adj",
-                    "%noun",
-                    "%place",
-                    "%name",
-                    "%firstnameletter",
-                    "%band",
-                    "%book",
-                    "%pet",
-                    "%favorite",
-                    "%farm",
-                    "%time",
-                    "%fork",
-                    "%kid1",
-                    "%kid2",
-                    "*",
-                    "@",
-                    "^",
-                    "%",
-                    "%spouse",
-                    "%rival"
-                };
-                foreach (var specialEncoding in specialEncodings)
-                {
-                    var oldStringCount = Original.Split(new[] {specialEncoding}, StringSplitOptions.None).Length - 1;
-                    var newStringCount = Result.Split(new[] {specialEncoding}, StringSplitOptions.None).Length - 1;
-                    if (oldStringCount == 0 || oldStringCount == newStringCount)
-                        continue;
-
-                    Warnings.Add(new Warning
-                    {
-                        Message =
-                            $"[{specialEncoding}] occurs {oldStringCount} time(s) in old content and {newStringCount} time(s) in new content!",
-                        WarningLevel = WarningLevel.Error
-                    });
-                }
-
-                if (Original.EndsWith(" ") && !Result.EndsWith(" "))
-                    Warnings.Add(new Warning
-                    {
-                        Message = "Trailing space missing!",
-                        WarningLevel = WarningLevel.Warning
-                    });
-
-                if (!Original.EndsWith(" ") && Result.EndsWith(" "))
-                    Warnings.Add(new Warning
-                    {
-                        Message = "Unnecessary trailing space!",
-                        WarningLevel = WarningLevel.Warning
-                    });
-
-                if (Original.StartsWith(" ") && !Result.StartsWith(" "))
-                    Warnings.Add(new Warning
-                    {
-                        Message = "Leading space missing!",
-                        WarningLevel = WarningLevel.Warning
-                    });
-
-                if (!Original.StartsWith(" ") && Result.StartsWith(" "))
-                    Warnings.Add(new Warning
-                    {
-                        Message = "Unnecessary Leading space!",
-                        WarningLevel = WarningLevel.Warning
-                    });
-
-                var originalTrimmed = Original.TrimEnd();
-                var resultTrimmed = Result.TrimEnd();
-
-                var filters = new Dictionary<char, string>
-                {
-                    {'.', "dot"},
-                    {'!', "exclamation mark"},
-                    {'?', "question mark"},
-                    {',', "comma "},
-                    {';', "semicolon "},
-                    {':', "Colon "}
-                };
-
-                var originalLastChar = originalTrimmed.Last();
-                if (filters.TryGetValue(originalLastChar, out var name) &&
-                    originalLastChar != resultTrimmed.Last())
-                    Warnings.Add(new Warning
-                    {
-                        Message = $"Result does not end with a {name}!",
-                        WarningLevel = WarningLevel.Info
-                    });
-
-                var balancedChars = new List<Tuple<char, char, string>>
-                {
-                    new Tuple<char, char, string>('(', ')', "Parentheses"),
-                    new Tuple<char, char, string>('{', '}', "Curly braces"),
-                    new Tuple<char, char, string>('[', ']', "Square brackets")
-                };
-
-                foreach (var encoding in balancedChars)
-                {
-                    var openCount = Result.Split(new[] {encoding.Item1}, StringSplitOptions.None).Length - 1;
-                    var closeCount = Result.Split(new[] {encoding.Item2}, StringSplitOptions.None).Length - 1;
-
-                    if (openCount == 0 && closeCount == 0
-                        || closeCount == openCount)
-                        continue;
-
-                    Warnings.Add(new Warning
-                    {
-                        Message = $"opening and closing {encoding.Item3} are not balanced!",
-                        WarningLevel = WarningLevel.Info
-                    });
-                }
-
-
-                var firstLetterOriginal = Original.FirstOrDefault(char.IsLetter);
-                var firstLetterResult = Result.FirstOrDefault(char.IsLetter);
-                if (firstLetterOriginal != '\0' && firstLetterResult != '\0')
-                {
-                    if (char.IsUpper(firstLetterOriginal) && !char.IsUpper(firstLetterResult))
-                        Warnings.Add(new Warning
-                        {
-                            Message = "First letter is not capitalized!",
-                            WarningLevel = WarningLevel.Info
-                        });
-
-                    if (!char.IsUpper(firstLetterOriginal) && char.IsUpper(firstLetterResult))
-                        Warnings.Add(new Warning
-                        {
-                            Message = "First letter is capitalized!",
-                            WarningLevel = WarningLevel.Info
-                        });
-                }
+                contentValidators.ForEach(c => {  c.Validate(Original, Result).ForEach(Warnings.Add); });
             }
 
             Warnings.RaiseListChangedEvents = true;

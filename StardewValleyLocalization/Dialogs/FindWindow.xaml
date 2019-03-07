@@ -7,7 +7,9 @@
                  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
                  mc:Ignorable="d"
                  Title="FindWindow" Height="182.073" Width="395.887"
-                 IsCloseButtonEnabled="False">
+                 IsCloseButtonEnabled="False"
+                 ShowInTaskbar="False"
+                 >
     <Border Padding="10">
         <StackPanel>
             <Label>Find</Label>
